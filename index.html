@@ -607,7 +607,7 @@ ${selectedProducts.map(p => '• ' + p).join('\n')}
 Please confirm availability and price. Thank you! 🙏`;
 
     const url = https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)};
-    window.open(url, '_blank');
+    window.location.href = url;
   }
 </script>
 
