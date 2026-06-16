@@ -379,7 +379,7 @@
   </div>
   <div class="products-grid" id="productGrid">
 
-    <div class="product-card" onclick="toggleProduct(this, 'Cement (Bag)')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Cement (Bag)')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🪨</div>
       <div class="product-name">Cement</div>
@@ -387,7 +387,7 @@
       <div class="product-price">Per Bag — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Red Bricks')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Red Bricks')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🧱</div>
       <div class="product-name">Red Bricks</div>
@@ -395,7 +395,7 @@
       <div class="product-price">Per 1000 — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'River Sand')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'River Sand')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🏖️</div>
       <div class="product-name">River Sand</div>
@@ -403,7 +403,7 @@
       <div class="product-price">Per Tractor — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Stone Chips / Gitti')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Stone Chips / Gitti')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🪨</div>
       <div class="product-name">Stone Chips</div>
@@ -411,7 +411,7 @@
       <div class="product-price">Per Tractor — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Steel Rods / Sariya')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Steel Rods / Sariya')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">⚙️</div>
       <div class="product-name">Steel Rods</div>
@@ -419,7 +419,7 @@
       <div class="product-price">Per Kg — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Fly Ash Bricks')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Fly Ash Bricks')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🟫</div>
       <div class="product-name">Fly Ash Bricks</div>
@@ -427,7 +427,7 @@
       <div class="product-price">Per 1000 — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Roofing Sheets')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Roofing Sheets')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🏠</div>
       <div class="product-name">Roofing Sheets</div>
@@ -435,7 +435,7 @@
       <div class="product-price">Per Sheet — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'River Soil / Mitti')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'River Soil / Mitti')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🌍</div>
       <div class="product-name">River Soil</div>
@@ -443,7 +443,7 @@
       <div class="product-price">Per Tractor — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'PVC Pipes')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'PVC Pipes')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🔧</div>
       <div class="product-name">PVC Pipes</div>
@@ -451,7 +451,7 @@
       <div class="product-price">Per Piece — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Paint & Putty')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Paint & Putty')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🎨</div>
       <div class="product-name">Paint & Putty</div>
@@ -459,7 +459,7 @@
       <div class="product-price">Per Litre — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Window & Door Frames')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Window & Door Frames')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">🚪</div>
       <div class="product-name">Door & Window Frames</div>
@@ -467,7 +467,7 @@
       <div class="product-price">Per Unit — Call for Price</div>
     </div>
 
-    <div class="product-card" onclick="toggleProduct(this, 'Tiles / Flooring')">
+    <div class="product-card" ontouchstart="toggleProduct(this, 'Tiles / Flooring')">
       <div class="selected-check">✓</div>
       <div class="product-emoji">⬜</div>
       <div class="product-name">Tiles / Flooring</div>
@@ -574,13 +574,19 @@
   const WHATSAPP_NUMBER = "919971398510"; // ← CHANGE THIS to your real number
 
   let selectedProducts = [];
+  let lastTouchTime = 0;
 
   function toggleProduct(card, name) {
-    card.classList.toggle('selected');
-    if (card.classList.contains('selected')) {
-      if (!selectedProducts.includes(name)) selectedProducts.push(name);
-    } else {
+    const now = Date.now();
+    if (now - lastTouchTime < 500) return;
+    lastTouchTime = now;
+
+    if (selectedProducts.includes(name)) {
       selectedProducts = selectedProducts.filter(p => p !== name);
+      card.classList.remove('selected');
+    } else {
+      selectedProducts.push(name);
+      card.classList.add('selected');
     }
     updateSelectedDisplay();
   }
