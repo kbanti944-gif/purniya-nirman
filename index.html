@@ -572,7 +572,7 @@
     }
   }
 
-  function sendWhatsApp(e) {
+  function getSelectedProducts() { return Array.from(document.querySelectorAll('input[name="material"]:checked')).map(cb => cb.value); } function sendWhatsApp(e) {
     e.preventDefault();
     const name = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('customerPhone').value.trim();
