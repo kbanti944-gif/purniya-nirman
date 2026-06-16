@@ -193,26 +193,8 @@
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(232,89,12,0.15);
   }
-  .product-card.selected,
-  .product-card.selected:hover {
-    border-color: var(--saffron) !important;
-    background: #FFF3EB !important;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(232,89,12,0.35) !important;
-  }
-  .product-card .selected-check {
-    display: none;
-    position: absolute;
-    top: 10px; right: 12px;
-    background: var(--saffron);
-    color: white;
-    border-radius: 50%;
-    width: 22px; height: 22px;
-    font-size: 12px;
-    align-items: center;
-    justify-content: center;
-  }
-  .product-card.selected .selected-check { display: flex; }
+  .product-card input[type="checkbox"] { position: absolute; top: 10px; right: 12px; width: 22px; height: 22px; accent-color: var(--saffron); cursor: pointer; }
+  .product-card:has(input:checked) { border-color: var(--saffron) !important; background: #FFF3EB !important; box-shadow: 0 8px 24px rgba(232,89,12,0.35) !important; }
   .product-emoji { font-size: 2.8rem; margin-bottom: 10px; }
   .product-name { font-weight: 700; font-size: 1rem; color: var(--dark); margin-bottom: 4px; }
   .product-hindi { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.8rem; color: #888; margin-bottom: 8px; }
@@ -374,106 +356,106 @@
 <section id="products">
   <div class="section-title">
     <h3>Our Building Materials</h3>
-    <p>Select items below to add them to your order</p>
+    <p>✅ Tick the items you need</p>
     <div class="line"></div>
   </div>
   <div class="products-grid" id="productGrid">
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Cement (Bag)')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Cement (Bag)" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🪨</div>
       <div class="product-name">Cement</div>
       <div class="product-hindi">सीमेंट</div>
       <div class="product-price">Per Bag — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Red Bricks')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Red Bricks" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🧱</div>
       <div class="product-name">Red Bricks</div>
       <div class="product-hindi">ईंट</div>
       <div class="product-price">Per 1000 — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'River Sand')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="River Sand" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🏖️</div>
       <div class="product-name">River Sand</div>
       <div class="product-hindi">बालू / रेत</div>
       <div class="product-price">Per Tractor — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Stone Chips / Gitti')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Stone Chips / Gitti" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🪨</div>
       <div class="product-name">Stone Chips</div>
       <div class="product-hindi">गिट्टी</div>
       <div class="product-price">Per Tractor — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Steel Rods / Sariya')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Steel Rods / Sariya" onchange="updateSelectedDisplay()">
       <div class="product-emoji">⚙️</div>
       <div class="product-name">Steel Rods</div>
       <div class="product-hindi">सरिया / लोहा</div>
       <div class="product-price">Per Kg — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Fly Ash Bricks')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Fly Ash Bricks" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🟫</div>
       <div class="product-name">Fly Ash Bricks</div>
       <div class="product-hindi">फ्लाई ऐश ईंट</div>
       <div class="product-price">Per 1000 — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Roofing Sheets')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Roofing Sheets" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🏠</div>
       <div class="product-name">Roofing Sheets</div>
       <div class="product-hindi">टिन / छत की चादर</div>
       <div class="product-price">Per Sheet — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'River Soil / Mitti')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="River Soil / Mitti" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🌍</div>
       <div class="product-name">River Soil</div>
       <div class="product-hindi">मिट्टी</div>
       <div class="product-price">Per Tractor — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'PVC Pipes')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="PVC Pipes" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🔧</div>
       <div class="product-name">PVC Pipes</div>
       <div class="product-hindi">पाइप</div>
       <div class="product-price">Per Piece — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Paint & Putty')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Paint & Putty" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🎨</div>
       <div class="product-name">Paint & Putty</div>
       <div class="product-hindi">रंग / पुट्टी</div>
       <div class="product-price">Per Litre — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Window & Door Frames')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Window & Door Frames" onchange="updateSelectedDisplay()">
       <div class="product-emoji">🚪</div>
       <div class="product-name">Door & Window Frames</div>
       <div class="product-hindi">दरवाजा / खिड़की</div>
       <div class="product-price">Per Unit — Call for Price</div>
-    </div>
+    </label>
 
-    <div class="product-card" ontouchstart="toggleProduct(this, 'Tiles / Flooring')">
-      <div class="selected-check">✓</div>
+    <label class="product-card">
+      <input type="checkbox" name="material" value="Tiles / Flooring" onchange="updateSelectedDisplay()">
       <div class="product-emoji">⬜</div>
       <div class="product-name">Tiles / Flooring</div>
       <div class="product-hindi">टाइल्स</div>
       <div class="product-price">Per Sq.ft — Call for Price</div>
-    </div>
+    </label>
 
   </div>
 </section>
@@ -573,31 +555,19 @@
   // Your WhatsApp number (with country code, no +)
   const WHATSAPP_NUMBER = "919971398510"; // ← CHANGE THIS to your real number
 
-  let selectedProducts = [];
-  let lastTouchTime = 0;
-
-  function toggleProduct(card, name) {
-    const now = Date.now();
-    if (now - lastTouchTime < 500) return;
-    lastTouchTime = now;
-
-    if (selectedProducts.includes(name)) {
-      selectedProducts = selectedProducts.filter(p => p !== name);
-      card.classList.remove('selected');
-    } else {
-      selectedProducts.push(name);
-      card.classList.add('selected');
-    }
-    updateSelectedDisplay();
+  function getSelectedProducts() {
+    const checked = document.querySelectorAll('input[name="material"]:checked');
+    return Array.from(checked).map(cb => cb.value);
   }
 
   function updateSelectedDisplay() {
+    const selected = getSelectedProducts();
     const display = document.getElementById('selected-items-display');
-    if (selectedProducts.length === 0) {
+    if (selected.length === 0) {
       display.textContent = '← Please select materials from above first';
       display.classList.remove('has-items');
     } else {
-      display.innerHTML = '✅ ' + selectedProducts.join(' &nbsp;|&nbsp; ✅ ');
+      display.innerHTML = selected.map(p => '✅ ' + p).join(' &nbsp;| ');
       display.classList.add('has-items');
     }
   }
@@ -615,6 +585,7 @@
       alert('Please fill in your Name, Phone, and Location!');
       return;
     }
+    const selectedProducts = getSelectedProducts();
     if (selectedProducts.length === 0) {
       alert('Please select at least one material from the products list!');
       return;
