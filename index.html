@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purnia Nirman Saman | पूर्णिया निर्माण सामान</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
+
+  :root {
+    --saffron: #E8590C;
+    --earth: #7C4A1E;
+    --brick: #C94B1A;
+    --sand: #F5DEB3;
+    --cream: #FDF6EC;
+    --dark: #1C1008;
+    --green: #2E7D32;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--saffron) 0%, var(--brick) 60%, var(--earth) 100%);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-icon {
+    width: 48px; height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+  }
+  .logo-text h1 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .logo-text p {
+    font-size: 0.72rem;
+    opacity: 0.9;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+  }
+  .header-contact a {
+    background: white;
+    color: var(--brick);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, #FEE8D6 0%, var(--cream) 100%);
+    padding: 50px 20px 40px;
+    text-align: center;
+    border-bottom: 3px solid var(--sand);
+  }
+  .hero .badge {
+    display: inline-block;
+    background: var(--saffron);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hero h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--earth);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .hero h2 span { color: var(--saffron); }
+  .hero p {
+    font-size: 1rem;
+    color: #555;
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--saffron);
+    color: white;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(232,89,12,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,89,12,0.5); }
+  .btn-outline {
+    background: transparent;
+    color: var(--brick);
+    border: 2px solid var(--brick);
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--brick); color: white; }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--earth);
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 14px 20px;
+    flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; }
+  .trust-item span:first-child { font-size: 1.2rem; }
+
+  /* SECTION */
+  section { padding: 50px 20px; max-width: 1100px; margin: auto; }
+  .section-title {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .section-title h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--earth);
+  }
+  .section-title p { color: #777; margin-top: 6px; }
+  .section-title .line {
+    width: 60px; height: 4px;
+    background: var(--saffron);
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+
+  /* PRODUCTS */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .product-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .product-card:hover {
+    border-color: var(--saffron);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(232,89,12,0.15);
+  }
+  .product-card.selected {
+    border-color: var(--saffron);
+    background: #FFF3EB;
+  }
+  .product-card .selected-check {
+    display: none;
+    position: absolute;
+    top: 10px; right: 12px;
+    background: var(--saffron);
+    color: white;
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-card.selected .selected-check { display: flex; }
+  .product-emoji { font-size: 2.8rem; margin-bottom: 10px; }
+  .product-name { font-weight: 700; font-size: 1rem; color: var(--dark); margin-bottom: 4px; }
+  .product-hindi { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.8rem; color: #888; margin-bottom: 8px; }
+  .product-price { font-size: 0.85rem; font-weight: 600; color: var(--saffron); }
+
+  /* ORDER FORM */
+  #order {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    color: var(--earth);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #E0D5C5;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.93rem;
+    background: var(--cream);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--saffron); }
+
+  #selected-items-display {
+    background: var(--cream);
+    border: 2px dashed var(--saffron);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    font-size: 0.88rem;
+    color: #555;
+    min-height: 50px;
+  }
+  #selected-items-display.has-items { color: var(--dark); font-weight: 500; }
+
+  .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: #25D366;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+    text-decoration: none;
+  }
+  .whatsapp-btn:hover { background: #1DA851; transform: translateY(-2px); }
+  .whatsapp-icon { font-size: 1.5rem; }
+
+  /* HOW IT WORKS */
+  .how-section { background: #FEF3E8; padding: 50px 20px; }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: auto;
+  }
+  .how-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .how-num {
+    width: 44px; height: 44px;
+    background: var(--saffron);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.1rem;
+    margin: 0 auto 14px;
+  }
+  .how-card h4 { font-weight: 700; margin-bottom: 6px; color: var(--earth); }
+  .how-card p { font-size: 0.85rem; color: #666; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: #ccc;
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 0.85rem;
+  }
+  footer strong { color: var(--saffron); }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .hero h2 { font-size: 1.6rem; }
+    #order { padding: 24px 16px; }
+    .trust-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🏗️</div>
+      <div class="logo-text">
+        <h1>Purnia Nirman Saman</h1>
+        <p>पूर्णिया निर्माण सामान — घर बनाओ आसानी से</p>
+      </div>
+    </div>
+    <div class="header-contact">
+      <a href="tel:+919999999999">📞 Call Us</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">🏠 Purnia District, Bihar</div>
+  <h2>सब कुछ एक जगह —<br><span>घर बनाने का सामान</span></h2>
+  <p>Order cement, bricks, sand, steel & more. Delivered right to your construction site in Purnia.</p>
+  <div class="hero-btns">
+    <a href="#products" class="btn-primary">🧱 Browse Materials</a>
+    <a href="#order" class="btn-outline">📋 Place Order</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span>✅</span> Quality Guaranteed</div>
+  <div class="trust-item"><span>🚚</span> Local Delivery</div>
+  <div class="trust-item"><span>📞</span> WhatsApp Orders</div>
+  <div class="trust-item"><span>💰</span> Best Prices</div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-title">
+    <h3>Our Building Materials</h3>
+    <p>Select items below to add them to your order</p>
+    <div class="line"></div>
+  </div>
+  <div class="products-grid" id="productGrid">
+
+    <div class="product-card" onclick="toggleProduct(this, 'Cement (Bag)')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🪨</div>
+      <div class="product-name">Cement</div>
+      <div class="product-hindi">सीमेंट</div>
+      <div class="product-price">Per Bag — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Red Bricks')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🧱</div>
+      <div class="product-name">Red Bricks</div>
+      <div class="product-hindi">ईंट</div>
+      <div class="product-price">Per 1000 — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'River Sand')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🏖️</div>
+      <div class="product-name">River Sand</div>
+      <div class="product-hindi">बालू / रेत</div>
+      <div class="product-price">Per Tractor — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Stone Chips / Gitti')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🪨</div>
+      <div class="product-name">Stone Chips</div>
+      <div class="product-hindi">गिट्टी</div>
+      <div class="product-price">Per Tractor — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Steel Rods / Sariya')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">⚙️</div>
+      <div class="product-name">Steel Rods</div>
+      <div class="product-hindi">सरिया / लोहा</div>
+      <div class="product-price">Per Kg — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Fly Ash Bricks')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🟫</div>
+      <div class="product-name">Fly Ash Bricks</div>
+      <div class="product-hindi">फ्लाई ऐश ईंट</div>
+      <div class="product-price">Per 1000 — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Roofing Sheets')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🏠</div>
+      <div class="product-name">Roofing Sheets</div>
+      <div class="product-hindi">टिन / छत की चादर</div>
+      <div class="product-price">Per Sheet — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'River Soil / Mitti')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🌍</div>
+      <div class="product-name">River Soil</div>
+      <div class="product-hindi">मिट्टी</div>
+      <div class="product-price">Per Tractor — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'PVC Pipes')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🔧</div>
+      <div class="product-name">PVC Pipes</div>
+      <div class="product-hindi">पाइप</div>
+      <div class="product-price">Per Piece — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Paint & Putty')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🎨</div>
+      <div class="product-name">Paint & Putty</div>
+      <div class="product-hindi">रंग / पुट्टी</div>
+      <div class="product-price">Per Litre — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Window & Door Frames')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">🚪</div>
+      <div class="product-name">Door & Window Frames</div>
+      <div class="product-hindi">दरवाजा / खिड़की</div>
+      <div class="product-price">Per Unit — Call for Price</div>
+    </div>
+
+    <div class="product-card" onclick="toggleProduct(this, 'Tiles / Flooring')">
+      <div class="selected-check">✓</div>
+      <div class="product-emoji">⬜</div>
+      <div class="product-name">Tiles / Flooring</div>
+      <div class="product-hindi">टाइल्स</div>
+      <div class="product-price">Per Sq.ft — Call for Price</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <div style="max-width:1100px; margin:auto;">
+    <div class="section-title">
+      <h3>How to Order</h3>
+      <p>3 simple steps — done!</p>
+      <div class="line"></div>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">1</div>
+        <h4>Select Materials</h4>
+        <p>Click on the items you need from our product list above.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">2</div>
+        <h4>Fill Your Details</h4>
+        <p>Enter your name, phone number, village/area, and quantity.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">3</div>
+        <h4>Send on WhatsApp</h4>
+        <p>Your order message is ready — just tap Send on WhatsApp!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER FORM -->
+<section>
+  <div class="section-title">
+    <h3>Place Your Order</h3>
+    <p>हम जल्द ही आपसे संपर्क करेंगे</p>
+    <div class="line"></div>
+  </div>
+  <div id="order">
+    <div class="form-group">
+      <label>Selected Materials 🧱</label>
+      <div id="selected-items-display">
+        ← Please select materials from above first
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your Name *</label>
+        <input type="text" id="customerName" placeholder="आपका नाम">
+      </div>
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" id="customerPhone" placeholder="मोबाइल नंबर">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Village / Area / Location *</label>
+      <input type="text" id="customerLocation" placeholder="गाँव / मोहल्ला / Block, Purnia">
+    </div>
+
+    <div class="form-group">
+      <label>Quantity / कितना चाहिए</label>
+      <input type="text" id="quantity" placeholder="e.g. 500 bricks, 10 bags cement, 1 tractor sand">
+    </div>
+
+    <div class="form-group">
+      <label>Delivery Date (Optional)</label>
+      <input type="date" id="deliveryDate">
+    </div>
+
+    <div class="form-group">
+      <label>Any Extra Message</label>
+      <textarea rows="3" id="extraMsg" placeholder="Any specific requirements or questions..."></textarea>
+    </div>
+
+    <a id="waBtn" class="whatsapp-btn" href="#" onclick="sendWhatsApp(event)">
+      <span class="whatsapp-icon">📲</span>
+      Send Order on WhatsApp
+    </a>
+    <p style="text-align:center; font-size:0.78rem; color:#888; margin-top:10px;">
+      * Your order details will open in WhatsApp. We will confirm & deliver.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🏗️ <strong>Purnia Nirman Saman</strong> — पूर्णिया, बिहार</p>
+  <p style="margin-top:8px;">All construction materials delivered locally. Quality guaranteed. 📞 Call or WhatsApp anytime.</p>
+  <p style="margin-top:10px; color:#666; font-size:0.78rem;">© 2025 Purnia Nirman Saman. Made with ❤️ for Purnia.</p>
+</footer>
+
+<script>
+  // Your WhatsApp number (with country code, no +)
+  const WHATSAPP_NUMBER = "919999999999"; // ← CHANGE THIS to your real number
+
+  let selectedProducts = [];
+
+  function toggleProduct(card, name) {
+    card.classList.toggle('selected');
+    if (card.classList.contains('selected')) {
+      if (!selectedProducts.includes(name)) selectedProducts.push(name);
+    } else {
+      selectedProducts = selectedProducts.filter(p => p !== name);
+    }
+    updateSelectedDisplay();
+  }
+
+  function updateSelectedDisplay() {
+    const display = document.getElementById('selected-items-display');
+    if (selectedProducts.length === 0) {
+      display.textContent = '← Please select materials from above first';
+      display.classList.remove('has-items');
+    } else {
+      display.innerHTML = '✅ ' + selectedProducts.join(' &nbsp;|&nbsp; ✅ ');
+      display.classList.add('has-items');
+    }
+  }
+
+  function sendWhatsApp(e) {
+    e.preventDefault();
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const location = document.getElementById('customerLocation').value.trim();
+    const qty = document.getElementById('quantity').value.trim();
+    const date = document.getElementById('deliveryDate').value;
+    const msg = document.getElementById('extraMsg').value.trim();
+
+    if (!name || !phone || !location) {
+      alert('Please fill in your Name, Phone, and Location!');
+      return;
+    }
+    if (selectedProducts.length === 0) {
+      alert('Please select at least one material from the products list!');
+      return;
+    }
+
+    const dateStr = date ? \n📅 *Delivery Date:* ${date} : '';
+    const msgStr = msg ? \n💬 *Extra Note:* ${msg} : '';
+
+    const text = `🏗️ New Order - Purnia Nirman Saman
+━━━━━━━━━━━━━━━━━━━━
+👤 Name: ${name}
+📞 Phone: ${phone}
+📍 Location: ${location}
+━━━━━━━━━━━━━━━━━━━━
+🧱 Materials Needed:
+${selectedProducts.map(p => '• ' + p).join('\n')}
+📦 Quantity: ${qty || 'Please discuss'}${dateStr}${msgStr}
+━━━━━━━━━━━━━━━━━━━━
+Please confirm availability and price. Thank you! 🙏`;
+
+    const url = https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)};
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
