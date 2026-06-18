@@ -24,20 +24,37 @@ section { padding:40px 20px; max-width:900px; margin:auto; }
 h3 { text-align:center; font-size:1.4rem; color:#7C4A1E; margin-bottom:8px; }
 .subtitle { text-align:center; color:#777; margin-bottom:24px; font-size:0.9rem; }
 
-.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap:16px; }
+.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap:16px; }
 
-.item { background:white; border:2px solid #E0D5C5; border-radius:12px; padding:16px 12px; text-align:center; cursor:pointer; }
-.item input[type=checkbox] { width:20px; height:20px; accent-color:#E8590C; margin-bottom:8px; cursor:pointer; }
+.item {
+  background:white;
+  border:2px solid #E0D5C5;
+  border-radius:12px;
+  padding:16px 12px;
+  text-align:center;
+  transition: border-color 0.2s;
+}
+.item.active { border-color:#E8590C; background:#FFF3EB; }
+.item .checkbox-row { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:8px; }
+.item input[type=checkbox] { width:20px; height:20px; accent-color:#E8590C; cursor:pointer; flex-shrink:0; }
 .item .emoji { font-size:2rem; display:block; margin-bottom:6px; }
 .item .name { font-weight:bold; font-size:0.9rem; }
-.item .hindi { font-size:0.75rem; color:#888; margin:2px 0; }
-.item .price { font-size:0.8rem; color:#E8590C; font-weight:bold; }
-.item:has(input:checked) { border-color:#E8590C; background:#FFF3EB; }
+.item .hindi { font-size:0.75rem; color:#888; margin:2px 0 4px; }
+.item .price { font-size:0.78rem; color:#E8590C; font-weight:bold; margin-bottom:10px; line-height:1.3; }
+
+.qty-row { display:none; align-items:center; justify-content:center; gap:6px; margin-top:8px; }
+.item.active .qty-row { display:flex; }
+.qty-row button { width:28px; height:28px; border-radius:50%; border:2px solid #E8590C; background:white; color:#E8590C; font-size:1.1rem; font-weight:bold; cursor:pointer; line-height:1; }
+.qty-row button:active { background:#E8590C; color:white; }
+.qty-row input { width:50px; height:28px; border:2px solid #E0D5C5; border-radius:6px; text-align:center; font-size:0.9rem; font-weight:bold; }
+.qty-unit { font-size:0.75rem; color:#888; margin-top:4px; }
 
 .form-box { background:white; border-radius:16px; padding:28px 20px; box-shadow:0 4px 20px rgba(0,0,0,0.1); max-width:600px; margin:auto; }
-.selected-box { background:#FDF6EC; border:2px dashed #E8590C; border-radius:8px; padding:12px; margin-bottom:16px; font-size:0.88rem; color:#555; min-height:44px; }
+.order-summary { background:#FDF6EC; border:2px dashed #E8590C; border-radius:8px; padding:12px; margin-bottom:16px; font-size:0.88rem; color:#555; min-height:50px; }
+.order-summary .item-line { color:#1C1008; font-weight:500; padding:2px 0; }
+
 label { display:block; font-weight:bold; font-size:0.88rem; color:#7C4A1E; margin-bottom:6px; margin-top:14px; }
-input[type=text], input[type=tel], input[type=date], textarea, select {
+input[type=text], input[type=tel], input[type=date], textarea {
   width:100%; padding:11px 13px; border:2px solid #E0D5C5; border-radius:8px;
   font-size:0.93rem; background:#FDF6EC; outline:none; font-family:Arial;
 }
@@ -53,6 +70,14 @@ textarea { height:80px; resize:none; }
 .how-num { width:40px; height:40px; background:#E8590C; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:1.1rem; margin:0 auto 12px; }
 .how-card h4 { color:#7C4A1E; margin-bottom:6px; }
 .how-card p { font-size:0.83rem; color:#666; }
+
+.reviews { background:white; }
+.review-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; max-width:900px; margin:auto; }
+.review-card { background:#FDF6EC; border:2px solid #E0D5C5; border-radius:12px; padding:18px; }
+.review-stars { color:#E8590C; font-size:1rem; margin-bottom:8px; }
+.review-text { font-size:0.88rem; color:#444; margin-bottom:10px; line-height:1.4; }
+.review-author { font-size:0.82rem; font-weight:bold; color:#7C4A1E; }
+.review-loc { font-size:0.76rem; color:#888; }
 
 footer { background:#1C1008; color:#ccc; text-align:center; padding:24px 20px; font-size:0.85rem; }
 footer strong { color:#E8590C; }
@@ -82,29 +107,223 @@ footer strong { color:#E8590C; }
 
 <section id="products">
   <h3>Our Building Materials</h3>
-  <p class="subtitle">✅ Tick the items you need</p>
+  <p class="subtitle">✅ Tick items & enter quantity for each</p>
   <div class="grid">
-    <div class="item"><input type="checkbox" name="material" value="Cement (सीमेंट)" onchange="updateDisplay()"><span class="emoji">🪨</span><div class="name">Cement</div><div class="hindi">सीमेंट</div><div class="price">Per Bag</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Red Bricks (ईंट)" onchange="updateDisplay()"><span class="emoji">🧱</span><div class="name">Red Bricks</div><div class="hindi">ईंट</div><div class="price">Per 1000</div></div>
-    <div class="item"><input type="checkbox" name="material" value="River Sand (बालू)" onchange="updateDisplay()"><span class="emoji">🏖️</span><div class="name">River Sand</div><div class="hindi">बालू / रेत</div><div class="price">Per Tractor</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Stone Chips (गिट्टी)" onchange="updateDisplay()"><span class="emoji">🪨</span><div class="name">Stone Chips</div><div class="hindi">गिट्टी</div><div class="price">Per Tractor</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Steel Rods (सरिया)" onchange="updateDisplay()"><span class="emoji">⚙️</span><div class="name">Steel Rods</div><div class="hindi">सरिया</div><div class="price">Per Kg</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Fly Ash Bricks" onchange="updateDisplay()"><span class="emoji">🟫</span><div class="name">Fly Ash Bricks</div><div class="hindi">फ्लाई ऐश ईंट</div><div class="price">Per 1000</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Roofing Sheets (टिन)" onchange="updateDisplay()"><span class="emoji">🏠</span><div class="name">Roofing Sheets</div><div class="hindi">टिन / चादर</div><div class="price">Per Sheet</div></div>
-    <div class="item"><input type="checkbox" name="material" value="River Soil (मिट्टी)" onchange="updateDisplay()"><span class="emoji">🌍</span><div class="name">River Soil</div><div class="hindi">मिट्टी</div><div class="price">Per Tractor</div></div>
-    <div class="item"><input type="checkbox" name="material" value="PVC Pipes (पाइप)" onchange="updateDisplay()"><span class="emoji">🔧</span><div class="name">PVC Pipes</div><div class="hindi">पाइप</div><div class="price">Per Piece</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Paint & Putty (रंग)" onchange="updateDisplay()"><span class="emoji">🎨</span><div class="name">Paint & Putty</div><div class="hindi">रंग / पुट्टी</div><div class="price">Per Litre</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Door & Window Frames (दरवाजा)" onchange="updateDisplay()"><span class="emoji">🚪</span><div class="name">Door & Window</div><div class="hindi">दरवाजा / खिड़की</div><div class="price">Per Unit</div></div>
-    <div class="item"><input type="checkbox" name="material" value="Tiles (टाइल्स)" onchange="updateDisplay()"><span class="emoji">⬜</span><div class="name">Tiles / Flooring</div><div class="hindi">टाइल्स</div><div class="price">Per Sq.ft</div></div>
+
+    <div class="item" id="item-cement">
+      <span class="emoji">🪨</span>
+      <div class="name">Cement</div>
+      <div class="hindi">सीमेंट</div>
+      <div class="price">₹365 – ₹390<br>per bag (50kg)</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('cement', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-cement">
+        <button onclick="changeQty('cement',-1)">−</button>
+        <input type="number" id="q-cement" value="1" min="1">
+        <button onclick="changeQty('cement',1)">+</button>
+      </div>
+      <div class="qty-unit">Bags (बोरा)</div>
+    </div>
+
+    <div class="item" id="item-bricks">
+      <span class="emoji">🧱</span>
+      <div class="name">Red Bricks</div>
+      <div class="hindi">ईंट</div>
+      <div class="price">₹3,800 – ₹5,000<br>per 1000</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('bricks', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-bricks">
+        <button onclick="changeQty('bricks',-100)">−</button>
+        <input type="number" id="q-bricks" value="1000" min="100" step="100">
+        <button onclick="changeQty('bricks',100)">+</button>
+      </div>
+      <div class="qty-unit">Pieces (नग)</div>
+    </div>
+
+    <div class="item" id="item-sand">
+      <span class="emoji">🏖️</span>
+      <div class="name">River Sand</div>
+      <div class="hindi">बालू / रेत</div>
+      <div class="price">₹4,500 – ₹7,000<br>per tractor</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('sand', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-sand">
+        <button onclick="changeQty('sand',-1)">−</button>
+        <input type="number" id="q-sand" value="1" min="1">
+        <button onclick="changeQty('sand',1)">+</button>
+      </div>
+      <div class="qty-unit">Tractor (ट्रैक्टर)</div>
+    </div>
+
+    <div class="item" id="item-gitti">
+      <span class="emoji">🪨</span>
+      <div class="name">Stone Chips</div>
+      <div class="hindi">गिट्टी</div>
+      <div class="price">₹5,000 – ₹8,000<br>per tractor</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('gitti', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-gitti">
+        <button onclick="changeQty('gitti',-1)">−</button>
+        <input type="number" id="q-gitti" value="1" min="1">
+        <button onclick="changeQty('gitti',1)">+</button>
+      </div>
+      <div class="qty-unit">Tractor (ट्रैक्टर)</div>
+    </div>
+
+    <div class="item" id="item-steel">
+      <span class="emoji">⚙️</span>
+      <div class="name">Steel Rods (TMT)</div>
+      <div class="hindi">सरिया / लोहा</div>
+      <div class="price">₹50 – ₹55<br>per kg</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('steel', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-steel">
+        <button onclick="changeQty('steel',-10)">−</button>
+        <input type="number" id="q-steel" value="10" min="1">
+        <button onclick="changeQty('steel',10)">+</button>
+      </div>
+      <div class="qty-unit">Kg (किलो)</div>
+    </div>
+
+    <div class="item" id="item-flyash">
+      <span class="emoji">🟫</span>
+      <div class="name">Fly Ash Bricks</div>
+      <div class="hindi">फ्लाई ऐश ईंट</div>
+      <div class="price">₹4,000 – ₹5,500<br>per 1000</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('flyash', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-flyash">
+        <button onclick="changeQty('flyash',-100)">−</button>
+        <input type="number" id="q-flyash" value="1000" min="100" step="100">
+        <button onclick="changeQty('flyash',100)">+</button>
+      </div>
+      <div class="qty-unit">Pieces (नग)</div>
+    </div>
+
+    <div class="item" id="item-roof">
+      <span class="emoji">🏠</span>
+      <div class="name">Roofing Sheets</div>
+      <div class="hindi">टिन / चादर</div>
+      <div class="price">₹450 – ₹1,200<br>per sheet</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('roof', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-roof">
+        <button onclick="changeQty('roof',-1)">−</button>
+        <input type="number" id="q-roof" value="1" min="1">
+        <button onclick="changeQty('roof',1)">+</button>
+      </div>
+      <div class="qty-unit">Sheets (चादर)</div>
+    </div>
+
+    <div class="item" id="item-mitti">
+      <span class="emoji">🌍</span>
+      <div class="name">River Soil</div>
+      <div class="hindi">मिट्टी</div>
+      <div class="price">₹2,500 – ₹5,000<br>per tractor</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('mitti', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-mitti">
+        <button onclick="changeQty('mitti',-1)">−</button>
+        <input type="number" id="q-mitti" value="1" min="1">
+        <button onclick="changeQty('mitti',1)">+</button>
+      </div>
+      <div class="qty-unit">Tractor (ट्रैक्टर)</div>
+    </div>
+
+    <div class="item" id="item-pipe">
+      <span class="emoji">🔧</span>
+      <div class="name">PVC Pipes</div>
+      <div class="hindi">पाइप</div>
+      <div class="price">Call for Price</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('pipe', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-pipe">
+        <button onclick="changeQty('pipe',-1)">−</button>
+        <input type="number" id="q-pipe" value="1" min="1">
+        <button onclick="changeQty('pipe',1)">+</button>
+      </div>
+      <div class="qty-unit">Pieces (नग)</div>
+    </div>
+
+    <div class="item" id="item-paint">
+      <span class="emoji">🎨</span>
+      <div class="name">Paint & Putty</div>
+      <div class="hindi">रंग / पुट्टी</div>
+      <div class="price">Call for Price</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('paint', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-paint">
+        <button onclick="changeQty('paint',-1)">−</button>
+        <input type="number" id="q-paint" value="1" min="1">
+        <button onclick="changeQty('paint',1)">+</button>
+      </div>
+      <div class="qty-unit">Litre (लीटर)</div>
+    </div>
+
+    <div class="item" id="item-door">
+      <span class="emoji">🚪</span>
+      <div class="name">Door & Window</div>
+      <div class="hindi">दरवाजा / खिड़की</div>
+      <div class="price">Call for Price</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('door', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-door">
+        <button onclick="changeQty('door',-1)">−</button>
+        <input type="number" id="q-door" value="1" min="1">
+        <button onclick="changeQty('door',1)">+</button>
+      </div>
+      <div class="qty-unit">Units (नग)</div>
+    </div>
+
+    <div class="item" id="item-tiles">
+      <span class="emoji">⬜</span>
+      <div class="name">Tiles / Flooring</div>
+      <div class="hindi">टाइल्स</div>
+      <div class="price">Call for Price</div>
+      <div class="checkbox-row">
+        <input type="checkbox" onchange="toggleItem('tiles', this)">
+        <span style="font-size:0.8rem;">Select</span>
+      </div>
+      <div class="qty-row" id="qty-tiles">
+        <button onclick="changeQty('tiles',-10)">−</button>
+        <input type="number" id="q-tiles" value="10" min="1">
+        <button onclick="changeQty('tiles',10)">+</button>
+      </div>
+      <div class="qty-unit">Sq.ft (वर्ग फुट)</div>
+    </div>
+
   </div>
+  <p style="text-align:center;font-size:0.78rem;color:#999;margin-top:20px;">* Prices are approximate and may vary based on market rate, quantity & delivery location. Final price confirmed on WhatsApp/Call.</p>
 </section>
 
 <div class="how">
   <h3 style="margin-bottom:24px;">How to Order</h3>
   <div class="how-grid">
-    <div class="how-card"><div class="how-num">1</div><h4>Select Materials</h4><p>Tick the items you need above</p></div>
-    <div class="how-card"><div class="how-num">2</div><h4>Fill Your Details</h4><p>Name, phone, village, quantity</p></div>
-    <div class="how-card"><div class="how-num">3</div><h4>Send on WhatsApp</h4><p>Tap the green button below!</p></div>
+    <div class="how-card"><div class="how-num">1</div><h4>Select Materials</h4><p>Tick items & set quantity for each</p></div>
+    <div class="how-card"><div class="how-num">2</div><h4>Fill Your Details</h4><p>Name, phone, village, delivery date</p></div>
+    <div class="how-card"><div class="how-num">3</div><h4>Send on WhatsApp</h4><p>Tap green button — order sent!</p></div>
   </div>
 </div>
 
@@ -112,7 +331,9 @@ footer strong { color:#E8590C; }
   <h3>Place Your Order</h3>
   <p class="subtitle">हम जल्द ही आपसे संपर्क करेंगे</p>
   <div class="form-box">
-    <div class="selected-box" id="selectedBox">← Please tick materials from above first</div>
+
+    <p style="font-weight:bold;color:#7C4A1E;margin-bottom:8px;">🧱 Your Order Summary:</p>
+    <div class="order-summary" id="orderSummary">← Please select materials from above first</div>
 
     <label>Your Name * (आपका नाम)</label>
     <input type="text" id="name" placeholder="Enter your name">
@@ -123,9 +344,6 @@ footer strong { color:#E8590C; }
     <label>Village / Area / Location * (गाँव / मोहल्ला)</label>
     <input type="text" id="location" placeholder="Village, Block, Purnia">
 
-    <label>Quantity (कितना चाहिए)</label>
-    <input type="text" id="qty" placeholder="e.g. 500 bricks, 10 bags cement">
-
     <label>Delivery Date (Optional)</label>
     <input type="date" id="date">
 
@@ -133,8 +351,38 @@ footer strong { color:#E8590C; }
     <textarea id="msg" placeholder="Any specific requirements..."></textarea>
 
     <button class="wa-btn" onclick="sendOrder()">📲 Send Order on WhatsApp</button>
-    <p style="text-align:center;font-size:0.78rem;color:#888;margin-top:10px;">Your order will open in WhatsApp — just tap Send!</p>
+    <p style="text-align:center;font-size:0.78rem;color:#888;margin-top:10px;">WhatsApp will open — tap Send to confirm your order!</p>
   </div>
+</section>
+
+<section class="reviews">
+  <h3>What Our Customers Say</h3>
+  <p class="subtitle">हमारे ग्राहकों की राय</p>
+  <div class="review-grid">
+
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div class="review-text">"Cement aur bricks dono ek hi din mein delivery ho gaya. Quality bhi badhiya thi. Bahut accha service hai!"</div>
+      <div class="review-author">Rajesh Kumar</div>
+      <div class="review-loc">📍 Purnia Sadar</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div class="review-text">"WhatsApp pe order karna bahut easy hai. Price bhi market se kam mila. Ghar banane mein bahut help mila."</div>
+      <div class="review-author">Sunita Devi</div>
+      <div class="review-loc">📍 Banmankhi</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐</div>
+      <div class="review-text">"Sand aur gitti time pe pahuncha diya site tak. Driver bhi polite tha. Recommend karunga sabko."</div>
+      <div class="review-author">Mohammad Irfan</div>
+      <div class="review-loc">📍 Dhamdaha</div>
+    </div>
+
+  </div>
+  <p style="text-align:center;margin-top:20px;font-size:0.85rem;color:#888;">Apna order complete hone ke baad humein WhatsApp pe review bhejiye — hum yahan add karenge!</p>
 </section>
 
 <footer>
@@ -143,40 +391,72 @@ footer strong { color:#E8590C; }
 </footer>
 
 <script>
-function updateDisplay() {
-  var boxes = document.querySelectorAll('input[name="material"]:checked');
-  var selected = [];
-  for (var i = 0; i < boxes.length; i++) {
-    selected.push(boxes[i].value);
-  }
-  var box = document.getElementById('selectedBox');
-  if (selected.length === 0) {
-    box.style.color = '#555';
-    box.innerHTML = '← Please tick materials from above first';
+var materials = {
+  cement:  { name: 'Cement (सीमेंट)',        unit: 'Bags' },
+  bricks:  { name: 'Red Bricks (ईंट)',        unit: 'Pieces' },
+  sand:    { name: 'River Sand (बालू)',        unit: 'Tractor' },
+  gitti:   { name: 'Stone Chips (गिट्टी)',    unit: 'Tractor' },
+  steel:   { name: 'Steel Rods TMT (सरिया)',   unit: 'Kg' },
+  flyash:  { name: 'Fly Ash Bricks',          unit: 'Pieces' },
+  roof:    { name: 'Roofing Sheets (टिन)',    unit: 'Sheets' },
+  mitti:   { name: 'River Soil (मिट्टी)',     unit: 'Tractor' },
+  pipe:    { name: 'PVC Pipes (पाइप)',        unit: 'Pieces' },
+  paint:   { name: 'Paint & Putty (रंग)',     unit: 'Litre' },
+  door:    { name: 'Door & Window (दरवाजा)', unit: 'Units' },
+  tiles:   { name: 'Tiles (टाइल्स)',          unit: 'Sq.ft' }
+};
+
+var selected = {};
+
+function toggleItem(id, cb) {
+  if (cb.checked) {
+    selected[id] = true;
+    document.getElementById('item-' + id).classList.add('active');
   } else {
-    box.style.color = '#1C1008';
-    box.innerHTML = '✅ ' + selected.join('<br>✅ ');
+    delete selected[id];
+    document.getElementById('item-' + id).classList.remove('active');
   }
+  updateSummary();
+}
+
+function changeQty(id, delta) {
+  var input = document.getElementById('q-' + id);
+  var val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  input.value = val;
+  updateSummary();
+}
+
+function updateSummary() {
+  var box = document.getElementById('orderSummary');
+  var keys = Object.keys(selected);
+  if (keys.length === 0) {
+    box.style.color = '#555';
+    box.innerHTML = '← Please select materials from above first';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < keys.length; i++) {
+    var id = keys[i];
+    var qty = document.getElementById('q-' + id).value;
+    var unit = materials[id].unit;
+    var mname = materials[id].name;
+    html += '<div class="item-line">✅ ' + mname + ' — <strong>' + qty + ' ' + unit + '</strong></div>';
+  }
+  box.style.color = '#1C1008';
+  box.innerHTML = html;
 }
 
 function sendOrder() {
-  var boxes = document.querySelectorAll('input[name="material"]:checked');
-  var selected = [];
-  for (var i = 0; i < boxes.length; i++) {
-    selected.push(boxes[i].value);
-  }
+  var keys = Object.keys(selected);
+  if (keys.length === 0) { alert('Please select at least one material!'); return; }
 
   var name = document.getElementById('name').value.trim();
   var phone = document.getElementById('phone').value.trim();
   var location = document.getElementById('location').value.trim();
-  var qty = document.getElementById('qty').value.trim();
   var date = document.getElementById('date').value;
   var msg = document.getElementById('msg').value.trim();
 
-  if (selected.length === 0) {
-    alert('Please tick at least one material first!');
-    return;
-  }
   if (!name) { alert('Please enter your Name!'); return; }
   if (!phone) { alert('Please enter your Phone Number!'); return; }
   if (!location) { alert('Please enter your Location!'); return; }
@@ -187,20 +467,21 @@ function sendOrder() {
   text += '📞 Phone: ' + phone + '\n';
   text += '📍 Location: ' + location + '\n';
   text += '━━━━━━━━━━━━━━━━━━━━\n';
-  text += '🧱 Materials Needed:\n';
-  for (var i = 0; i < selected.length; i++) {
-    text += '• ' + selected[i] + '\n';
+  text += '🧱 Materials & Quantity:\n';
+  for (var i = 0; i < keys.length; i++) {
+    var id = keys[i];
+    var qty = document.getElementById('q-' + id).value;
+    var unit = materials[id].unit;
+    var mname = materials[id].name;
+    text += '• ' + mname + ': ' + qty + ' ' + unit + '\n';
   }
-  if (qty) text += '📦 Quantity: ' + qty + '\n';
   if (date) text += '📅 Delivery Date: ' + date + '\n';
   if (msg) text += '💬 Note: ' + msg + '\n';
   text += '━━━━━━━━━━━━━━━━━━━━\n';
   text += 'Please confirm price and delivery. Thank you! 🙏';
 
-  var url = 'https://wa.me/919971398510?text=' + encodeURIComponent(text);
-  window.location.href = url;
+  window.location.href = 'https://wa.me/919971398510?text=' + encodeURIComponent(text);
 }
 </script>
-
 </body>
 </html>
